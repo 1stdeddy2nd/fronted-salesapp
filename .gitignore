@@ -18,10 +18,10 @@ secrets.json
 *.pidb
 
 # ASP.NET Core environment config
-appsettings.json
 appsettings.Development.json
 appsettings.Production.json
 appsettings.Staging.json
 
 # Only track this
 !appsettings-example.json
+!appsettings.json
