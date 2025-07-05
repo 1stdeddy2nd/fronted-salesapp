@@ -1,0 +1,27 @@
+# Build output
+bin/
+obj/
+
+# Visual Studio cache files
+.vs/
+*.user
+*.suo
+
+# Rider/JetBrains
+.idea/
+
+# User secrets
+secrets.json
+
+# Runtime files
+*.db
+*.pidb
+
+# ASP.NET Core environment config
+appsettings.json
+appsettings.Development.json
+appsettings.Production.json
+appsettings.Staging.json
+
+# Only track this
+!appsettings-example.json
