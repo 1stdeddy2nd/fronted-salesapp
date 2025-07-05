@@ -12,6 +12,10 @@ namespace SalesAnalytics.Data
         public DbSet<Sales> Sales { get; set; }
         public DbSet<SalesSummaryDto> SalesSummaries { get; set; }
 
+        public DbSet<SalesProduct> DimProducts { get; set; }
+        public DbSet<SalesRegion> DimRegions { get; set; }
+        public DbSet<SalesCustomer> DimCustomers { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Sales>(entity =>

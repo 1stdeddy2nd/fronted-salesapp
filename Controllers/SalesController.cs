@@ -4,6 +4,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using SalesAnalytics.Data;
 using SalesAnalytics.Dto;
+using SalesAnalytics.Models;
 
 namespace SalesAnalytics.Controllers;
 
@@ -18,6 +19,7 @@ public class SalesController : ControllerBase
         _context = context;
     }
 
+    [Authorize(Roles = "Sales.Admin")]
     [HttpGet]
     public async Task<ActionResult<SalesResponseDto>> GetSales(
         [FromQuery] string? customerId,
@@ -62,11 +64,25 @@ public class SalesController : ControllerBase
         return Ok(response);
     }
 
-    [Authorize(Roles = "Sales.Admin")]
-    [HttpDelete("secure-delete")]
-    public IActionResult DeleteSalesData()
+    [HttpGet("products")]
+    public async Task<ActionResult<IEnumerable<SalesProduct>>> GetProducts()
     {
-        return Ok("Only Admins can delete data.");
+        var products = await _context.DimProducts.ToListAsync();
+        return Ok(products);
+    }
+
+    [HttpGet("regions")]
+    public async Task<ActionResult<IEnumerable<SalesRegion>>> GetRegions()
+    {
+        var regions = await _context.DimRegions.ToListAsync();
+        return Ok(regions);
+    }
+
+    [HttpGet("customers")]
+    public async Task<ActionResult<IEnumerable<SalesCustomer>>> GetCustomers()
+    {
+        var customers = await _context.DimCustomers.ToListAsync();
+        return Ok(customers);
     }
 
 }
